@@ -55,7 +55,8 @@ public class Print1ToMaxOfNDigits {
 		for (int i=0;i<result.length;i++){
 			result[i] = '0';
 		}
-		
+	        
+
 		System.out.println(result);
 		
 	}
