@@ -1,4 +1,4 @@
-/* !未解决
+ /*
  * 题目来源：牛客网
  * Author:Ning
  * 题目:
@@ -27,7 +27,7 @@ public class Print1ToMaxOfNDigits {
 	
 	public static void main(String[] args){
 		Print1ToMaxOfNDigits test = new Print1ToMaxOfNDigits();
-		test.print1ToMaxOfNDigits1(5);
+		test.print1ToMaxOfNDigits2(8);
 	}
 	
 	public void print1ToMaxOfNDigits1(int n){
@@ -55,9 +55,57 @@ public class Print1ToMaxOfNDigits {
 		for (int i=0;i<result.length;i++){
 			result[i] = '0';
 		}
-	        
+		
+		while(!Increment(result)){
+			PrintResult(result);
+			System.out.println();
+		}
 
-		System.out.println(result);
+		// System.out.println(result);
 		
 	}
-}
+	public boolean Increment(char[] array){
+		boolean isOverFlow = false;
+		int nTakeover=0;
+		int nlength = array.length;
+		for (int i=nlength-1;i>=0;i--){
+			int nSum = array[i]-'0'+nTakeover;
+			if (i==nlength-1)
+				nSum++;
+			if (nSum>=10){
+				if (i==0)
+					isOverFlow = true;
+				else{
+					nSum -= 10;
+					nTakeover = 1;
+					array[i] = (char)('0'+nSum);
+				}
+			}
+			else{
+				array[i] = (char)('0'+nSum);
+				break;
+			}
+		}
+		return isOverFlow;
+	}
+
+	public void PrintResult(char[] array){
+		boolean flag = true;
+		for (int i=0;i<array.length;i++){
+			if ((array[i]!='0')&&(flag==true))
+				flag = false;
+			if (!flag){
+				System.out.print(array[i]);
+			}
+		}
+		// int flag = 0;
+		// for (int i=0;i<array.length;i++){
+		// 	if (array[i]-'0'!=0){
+		// 		flag = i;
+		// 		break;
+		// 	}
+		// }
+		// StringBuffer arrayString = new StringBuffer(array.toString());
+		// System.out.println(arrayString.substring(flag, array.length));
+		}
+	}
